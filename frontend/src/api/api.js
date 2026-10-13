@@ -1,6 +1,6 @@
 
 
-const API_BASE_URL = "https://workboard-lyv7.onrender.com";
+const API_BASE_URL = "https://workboard-lyv7.onrender.com/api";
 
 
 function getAuthHeader(email, password) {
