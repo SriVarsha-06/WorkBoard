@@ -33,6 +33,7 @@ function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("ALL");
@@ -345,21 +346,36 @@ const [darkMode, setDarkMode] = useState(false);
             required
           />
 
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            minLength={8}
-            maxLength={72}
-            autoComplete={
-              mode === "register"
-                ? "new-password"
-                : "current-password"
-            }
-            required
-          />
+          
+<label htmlFor="password">Password</label>
+
+<div className="password-input-wrapper">
+  <input
+    id="password"
+    type={showPassword ? "text" : "password"}
+    value={password}
+    onChange={(event) => setPassword(event.target.value)}
+    minLength={8}
+    maxLength={72}
+    autoComplete={
+      mode === "register"
+        ? "new-password"
+        : "current-password"
+    }
+    required
+  />
+
+  <button
+    type="button"
+    className="password-toggle"
+    onClick={() => setShowPassword((visible) => !visible)}
+    aria-label={showPassword ? "Hide password" : "Show password"}
+    aria-pressed={showPassword}
+  >
+    {showPassword ? "🙈" : "👁️"}
+  </button>
+</div>
+
 
           {error && <p className="error-message">{error}</p>}
           {notice && <p className="success-message">{notice}</p>}
